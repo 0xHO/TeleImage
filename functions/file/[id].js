@@ -24,7 +24,9 @@ export async function onRequest(context) {
         console.log(url.pathname.split(".")[0].split("/")[2])
         // 获取 Telegram 文件的真实路径
         const filePath = await getFilePath(env, url.pathname.split(".")[0].split("/")[2]);
-        console.log(filePath)
+        if (!filePath) {
+            return new Response("文件路径获取失败", { status: 500 });
+        }
         fileUrl = `https://api.telegram.org/file/bot${env.TG_Bot_Token}/${filePath}`;
     }
 
