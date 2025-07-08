@@ -1,4 +1,4 @@
-# Telegraph-Image
+# TeleImage
 
 免费图片托管解决方案，Flickr/imgur 替代品。使用 Cloudflare Pages 和 Telegraph。
 
@@ -41,7 +41,7 @@
 
 ### 提前准备
 
-你唯一需要提前准备的就是一个 Cloudflare 账户 （如果需要在自己的服务器上部署，不依赖 Cloudflare，可参考[#46](https://github.com/cf-pages/Telegraph-Image/issues/46) ）
+你唯一需要提前准备的就是一个 Cloudflare 账户 （如果需要在自己的服务器上部署，不依赖 Cloudflare，可参考[#46](https://github.com/cf-pages/TeleImage/issues/46) ）
 
 ### 手把手教程
 
@@ -51,7 +51,7 @@
 
 2.打开 Cloudflare Dashboard，进入 Pages 管理页面，选择创建项目，选择`连接到 Git 提供程序`
 
-![1](https://telegraph-image.pages.dev/file/8d4ef9b7761a25821d9c2.png)
+![1](https://TeleImage.pages.dev/file/8d4ef9b7761a25821d9c2.png)
 
 3. 按照页面提示输入项目名称，选择需要连接的 git 仓库，点击`部署站点`即可完成部署
 
@@ -70,7 +70,7 @@
 ### 绑定自定义域名
 
 在 pages 的自定义域里面，绑定 cloudflare 中存在的域名，在 cloudflare 托管的域名，自动会修改 dns 记录
-![2](https://telegraph-image.pages.dev/file/29546e3a7465a01281ee2.png)
+![2](https://TeleImage.pages.dev/file/29546e3a7465a01281ee2.png)
 
 ### 开启图片审查
 
@@ -83,7 +83,7 @@
 注意：由于所做的更改将在下次部署时生效，你或许还需要进入`部署`页面，重新部署一下该本项目
 
 开启图片审查后，因为审查需要时间，首次的图片加载将会变得缓慢，之后的图片加载由于存在缓存，并不会受到影响
-![3](https://telegraph-image.pages.dev/file/bae511fb116b034ef9c14.png)
+![3](https://TeleImage.pages.dev/file/bae511fb116b034ef9c14.png)
 
 ### 限制
 
