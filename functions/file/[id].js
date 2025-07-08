@@ -43,21 +43,6 @@ export async function onRequest(context) {
     // 日志记录响应状态
     console.log(response.ok, response.status);
 
-    // 组装元数据对象
-    const metadata = {
-        ListType: record.metadata.ListType || "None",
-        Label: record.metadata.Label || "None",
-        TimeStamp: record.metadata.TimeStamp || Date.now(),
-        liked: record.metadata.liked !== undefined ? record.metadata.liked : false,
-        fileName: record.metadata.fileName || params.id,
-        fileSize: record.metadata.fileSize || 0,
-    };
-
-
-    // 只有非成人内容才会走到这里，保存元数据
-    console.log("保存元数据");
-    await env.img_url.put(params.id, "", { metadata });
-
     // 返回文件内容
     return response;
 }
