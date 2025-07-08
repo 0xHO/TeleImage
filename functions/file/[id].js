@@ -43,8 +43,55 @@ export async function onRequest(context) {
     // 日志记录响应状态
     console.log(response.ok, response.status);
 
-    // 返回文件内容
-    return response;
+    // 根据文件扩展名设置 Content-Type
+    function getContentTypeByExt(ext) {
+        const map = {
+            '.jpg': 'image/jpeg',
+            '.jpeg': 'image/jpeg',
+            '.png': 'image/png',
+            '.gif': 'image/gif',
+            '.svg': 'image/svg+xml',
+            '.webp': 'image/webp',
+            '.bmp': 'image/bmp',
+            '.mp3': 'audio/mpeg',
+            '.wav': 'audio/wav',
+            '.ogg': 'audio/ogg',
+            '.mp4': 'video/mp4',
+            '.webm': 'video/webm',
+            '.pdf': 'application/pdf',
+            '.txt': 'text/plain',
+            '.json': 'application/json',
+            '.js': 'application/javascript',
+            '.css': 'text/css',
+            '.html': 'text/html',
+        };
+        return map[ext.toLowerCase()] || '';
+    }
+
+    // 提取文件扩展名
+    let ext = '';
+    try {
+        const pathname = new URL(fileUrl).pathname;
+        const match = pathname.match(/\.([a-zA-Z0-9]+)$/);
+        if (match) {
+            ext = '.' + match[1];
+        }
+    } catch (e) {}
+
+    const contentType = getContentTypeByExt(ext);
+    const headers = new Headers(response.headers);
+    if (contentType) {
+        headers.set('Content-Type', contentType);
+        // 让浏览器直接预览
+        headers.set('Content-Disposition', 'inline');
+    }
+
+    // 返回文件内容，带上新的响应头
+    return new Response(response.body, {
+        status: response.status,
+        statusText: response.statusText,
+        headers,
+    });
 }
 
 /**
