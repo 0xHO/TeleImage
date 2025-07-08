@@ -368,7 +368,7 @@
         w =
           (o(332),
           {
-            head: { title: "TeleImage|免费图床" },
+            head: { title: "TeleImage" },
             components: {
               Background: d,
               Header: f,
